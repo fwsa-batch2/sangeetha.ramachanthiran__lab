@@ -1,0 +1,45 @@
+To create databases
+    CREATE DATABASE database_name;    
+To show databases:
+    SHOW DATABASES;
+To create table:
+    CREATE TABLE table_name (Id int(5), First_name varchar(25), Second_name varchar(25), Age int(2), Gender varchar(6));
+To show datatype of the tale:
+    DESC table_name;
+To show table:
+    SELECT * FROM table_name;
+To insert values into table:
+    INSERT INTO StudentList VALUES (null,'Kaushik', 'Singh', 18, 'M');
+To update a value(change a value) in table:
+    UPDATE StudentList SET FirstName = 'Annapoorani' WHERE Id=456;
+To delete table:
+    DROP TABLE table_name;
+To delete row in table:
+    DELETE FROM table_name WHERE column_name = 'value of id or name in that row';   (DELETE FROM table_name WHERE condition);
+Rename  
+    ALTER TABLE table_name RENAME(old_column_name TO new_column_name); 
+Truncate
+    TRUNCATE TABLE table_name;
+Cross join
+    SELECT * FROM `studentList` CROSS JOIN `markList`;
+    SELECT * FROM studentList JOIN markList;
+Inner join or Simple Join
+    SELECT * fROM studentList INNER JOIN markList using(Id);
+    SELECT EmailId FROM studentList INNER JOIN markList ON studentList.Id = markList.Id;
+    SELECT * FROM studentList INNER JOIN markList ON studentList.Id = markList.Id;
+Right Join
+    SELECT * FROM studentList RIGHT JOIN markList ON studentList.Id = markList.Id;
+Left Join
+    SELECT * FROM studentList Left JOIN markList ON studentList.Id = markList.Id;  
+Full Join
+    SELECT * FROM studentList RIGHT JOIN markList ON studentList.Id = markList.Id UNION  SELECT * FROM studentList RIGHT JOIN markList ON studentList.Id = markList.Id; 
+To add auto_increment in table after creating table
+    ALTER TABLE StudentList MODIFY Id int(5) auto_increment primary key;
+Using all constraints without foreign key
+   CREATE TABLE studentList (Id int(5) PRIMARY KEY, firstName varchar(25),lastName varchar(25) NOT NULL, EmailId varchar(255) UNIQUE, Title varchar(15) DEFAULT 'FWSA Student', Age int(2) CHECK(Age>=18));
+Add check constraints after creating table
+   ALTER TABLE studentList ADD Age int(2) CHECK (Age >= 18);   
+Foreign Key 
+    CREATE TABLE markList (Marks int(2), Grades varchar(2), Id int(5), FOREIGN KEY(Id) REFERENCES registeredId(Id));
+To Drop Unique key from a column
+    ALTER TABLE table_name DROP INDEX constraint_name;   
