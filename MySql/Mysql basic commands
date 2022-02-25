@@ -70,8 +70,155 @@ SELECT * FROM studentDetail;
 |       2 | Annapoorani | Babumanikandan |
 |       3 | Prasanna    | Venkatesh      |
 +---------+-------------+----------------+
+    
+Constraints without Foreign key
+    CREATE TABLE studentDetail (Id int(5) PRIMARY KEY, firstName varchar(25),lastName varchar(25) NOT NULL, EmailId varchar(255) UNIQUE, Title varchar(15) DEFAULT 'FWSA Student',Age int(2) CHECK (Age >= 18));
+    DESC studentDetail;
+
++-----------+--------------+------+-----+--------------+----------------+
+| Field     | Type         | Null | Key | Default      | Extra          |
++-----------+--------------+------+-----+--------------+----------------+
+| Id        | int          | NO   | PRI | NULL         |                |
+| firstName | varchar(25)  | YES  |     | NULL         |                |
+| lastName  | varchar(25)  | NO   |     | NULL         |                |
+| EmailId   | varchar(255) | YES  | UNI | NULL         |                |
+| Title     | varchar(15)  | YES  |     | FWSA Student |                |
+| Age       | int          | YES  |     | NULL         |                |
++-----------+--------------+------+-----+--------------+----------------+
+To add auto increment in the table
+    ALTER TABLE studentDetail MODIFY Id int(5) auto_increment;
+To describe table   
+    DESC studentDetail;
+DESC studentDetail;
++-----------+--------------+------+-----+--------------+----------------+
+| Field     | Type         | Null | Key | Default      | Extra          |
++-----------+--------------+------+-----+--------------+----------------+
+| Id        | int          | NO   | PRI | NULL         | auto_increment |
+| firstName | varchar(25)  | YES  |     | NULL         |                |
+| lastName  | varchar(25)  | NO   |     | NULL         |                |
+| EmailId   | varchar(255) | YES  | UNI | NULL         |                |
+| Title     | varchar(15)  | YES  |     | FWSA Student |                |
+| Age       | int          | YES  |     | NULL         |                |
++-----------+--------------+------+-----+--------------+----------------+
+To insert values into the table
+    INSERT INTO studentDetail (firstName, lastName, EmailId, Age) VALUES ('Sangeetha', 'Ramachanthiran', 'sangeetha@gmail.com', 18);
+To select table    
+    SELECT * FROM studentDetail;
++----+-----------+----------------+---------------------+--------------+------+
+| Id | firstName | lastName       | EmailId             | Title        | Age  |
++----+-----------+----------------+---------------------+--------------+------+
+|  1 | Sangeetha | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |
++----+-----------+----------------+---------------------+--------------+------+
+create another table with foreign key
+      CREATE TABLE markList (Marks int(2), Grades varchar(2), Id int(5), FOREIGN KEY(Id) REFERENCES studentDetail(Id));
+      
+      DESC markList;
++--------+------------+------+-----+---------+-------+
+| Field  | Type       | Null | Key | Default | Extra |
++--------+------------+------+-----+---------+-------+
+| Marks  | int        | YES  |     | NULL    |       |
+| Grades | varchar(2) | YES  |     | NULL    |       |
+| Id     | int        | YES  | MUL | NULL    |       |
++--------+------------+------+-----+---------+-------+
+Inserting values
+      INSERT INTO markList (Marks, Grades, Id) VALUES (10, 'A', 1);
+      INSERT INTO markList (Marks, Grades, Id) VALUES (10, 'A', 2);
+To select table
+      SELECT * FROM markList;
++-------+--------+------+
+| Marks | Grades | Id   |
++-------+--------+------+
+|    10 | A      |    1 |
+|    10 | A      |    2 |
++-------+--------+------+
+
+Some Logical Operators
+     SELECT * FROM studentDetail;
++----+-------------+----------------+---------------------+--------------+------+
+| Id | firstName   | lastName       | EmailId             | Title        | Age  |
++----+-------------+----------------+---------------------+--------------+------+
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |
+|  3 | Prasanna    | Venkatesh      | prasanna@gmail.com  | FWSA Student |   21 |
++----+-------------+----------------+---------------------+--------------+------+
+
+     SELECT * FROM studentDetail WHERE Id =1 AND Age = 18;
++----+-----------+----------------+---------------------+--------------+------+
+| Id | firstName | lastName       | EmailId             | Title        | Age  |
++----+-----------+----------------+---------------------+--------------+------+
+|  1 | Sangeetha | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |
++----+-----------+----------------+---------------------+--------------+------+
      
-Rename  
-    ALTER TABLE table_name RENAME(old_column_name TO new_column_name); 
-Truncate
-    TRUNCATE TABLE table_name;
+     SELECT * FROM studentDetail WHERE Id =1 OR Age = 18;
++----+-------------+----------------+---------------------+--------------+------+
+| Id | firstName   | lastName       | EmailId             | Title        | Age  |
++----+-------------+----------------+---------------------+--------------+------+
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |
++----+-------------+----------------+---------------------+--------------+------+
+    
+     SELECT * FROM studentDetail WHERE NOT Age = 18;
++----+-----------+-----------+--------------------+--------------+------+
+| Id | firstName | lastName  | EmailId            | Title        | Age  |
++----+-----------+-----------+--------------------+--------------+------+
+|  3 | Prasanna  | Venkatesh | prasanna@gmail.com | FWSA Student |   21 |
++----+-----------+-----------+--------------------+--------------+------+
+
+
+Cross Joins
+      SELECT * FROM `studentDetail` CROSS JOIN `markList`;
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+| Id | firstName   | lastName       | EmailId             | Title        | Age  | Marks | Grades | Id   |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |    10 | A      |    2 |
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |    10 | A      |    1 |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |    10 | A      |    2 |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |    10 | A      |    1 |
+|  3 | Prasanna    | Venkatesh      | prasanna@gmail.com  | FWSA Student |   21 |    10 | A      |    2 |
+|  3 | Prasanna    | Venkatesh      | prasanna@gmail.com  | FWSA Student |   21 |    10 | A      |    1 |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+
+Inner Joins
+       SELECT * FROM studentDetail INNER JOIN markList ON studentList.Id = markList.Id;
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+| Id | firstName   | lastName       | EmailId             | Title        | Age  | Marks | Grades | Id   |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |    10 | A      |    1 |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |    10 | A      |    2 |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+Inner joins by USING
+        SELECT * FROM studentDetail INNER JOIN markList using(Id);
++----+-------------+----------------+---------------------+--------------+------+-------+--------+
+| Id | firstName   | lastName       | EmailId             | Title        | Age  | Marks | Grades |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |    10 | A      |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |    10 | A      |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+
+Left Join
+        SELECT * FROM studentDetail LEFT JOIN markList ON studentList.Id = markList.Id;
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+| Id | firstName   | lastName       | EmailId             | Title        | Age  | Marks | Grades | Id   |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |    10 | A      |    1 |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |    10 | A      |    2 |
+|  3 | Prasanna    | Venkatesh      | prasanna@gmail.com  | FWSA Student |   21 |  NULL | NULL   | NULL |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+In left Join, values without null
+        SELECT * FROM studentDetail LEFT JOIN markList ON studentList.Id = markList.Id WHERE Marks is NOT NULL;
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+| Id | firstName   | lastName       | EmailId             | Title        | Age  | Marks | Grades | Id   |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+|  1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |    10 | A      |    1 |
+|  2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |    10 | A      |    2 |
++----+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+Right Join 
+        SELECT * FROM studentDetail RIGHT JOIN markList ON studentList.Id = markList.Id;
++------+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+| Id   | firstName   | lastName       | EmailId             | Title        | Age  | Marks | Grades | Id   |
++------+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+|    1 | Sangeetha   | Ramachanthiran | sangeetha@gmail.com | FWSA Student |   18 |    10 | A      |    1 |
+|    2 | Annapoorani | Babumanikandan | poorani@gmail.com   | FWSA Student |   18 |    20 | A+     |    2 |
+|    3 | Prasanna    | Venkatesh      | prasanna@gmail.com  | FWSA Student |   21 |    10 | A      |    3 |
++------+-------------+----------------+---------------------+--------------+------+-------+--------+------+
+
+
