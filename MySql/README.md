@@ -1,6 +1,8 @@
 # MySql
-```syntax
-CREATE DATABASE studentsInformation;```
+
+``` syntax
+CREATE DATABASE studentsInformation;
+```
 
 ```syntax
 SHOW DATABASES;```
