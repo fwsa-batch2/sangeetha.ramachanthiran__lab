@@ -5,9 +5,10 @@ CREATE DATABASE studentsInformation;
 ```
 
 ```syntax
-SHOW DATABASES;```
+SHOW DATABASES;
+```
 
-|---------------------|
+
 | Database            |
 |---------------------|
 | Name                |
@@ -21,18 +22,22 @@ SHOW DATABASES;```
 | studentDetails      |
 | studentsInformation |
 | sys                 |
-|---------------------|
-11 rows in set (0.00 sec)
-```syntax
-USE studentsInformation;```
 
+###### 11 rows in set (0.00 sec)
+```syntax
+USE studentsInformation;
+```
+
+``` syntax 
 CREATE TABLE students (id int PRIMARY KEY AUTO_INCREMENT, name varchar(100) NOT NULL, email varchar(100) NOT NULL, mobile_no bigint NOT NULL, password varchar(100) NOT NULL, gender char(1) NOT NULL, dob date, created_date timestamp NOT NULL DEFAULT current_timestamp, UNIQUE (email), CHECK ( gender in ('M','F')));
+```
 
 ```syntax
-DESC students;```
-+--------------+--------------+------+-----+-------------------+-------------------+
+DESC students;
+```
+
 | Field        | Type         | Null | Key | Default           | Extra             |
-+--------------+--------------+------+-----+-------------------+-------------------+
+|--------------+--------------|------|-----|-------------------|-------------------|
 | id           | int          | NO   | PRI | NULL              | auto_increment    |
 | name         | varchar(100) | NO   |     | NULL              |                   |
 | email        | varchar(100) | NO   | UNI | NULL              |                   |
@@ -41,21 +46,22 @@ DESC students;```
 | gender       | char(1)      | NO   |     | NULL              |                   |
 | dob          | date         | YES  |     | NULL              |                   |
 | created_date | timestamp    | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-+--------------+--------------+------+-----+-------------------+-------------------+
+
 
 ```syntax
 CREATE TABLE student_class (id int PRIMARY KEY AUTO_INCREMENT, student_id int NOT NULL, class int NOT NULL, status varchar(20) NOT NULL, FOREIGN KEY (student_id) REFERENCES students(id), CHECK( class >= 1 and class <=12), CHECK (status in ('ACTIVE','INACTIVE')));
 ```
 ```syntax
-DESC student_class;```
-|------------|-------------|------|-----|---------|----------------|
+DESC student_class;
+```
+
 | Field      | Type        | Null | Key | Default | Extra          |
 |------------|-------------|------|-----|---------|----------------|
 | id         | int         | NO   | PRI | NULL    | auto_increment |
 | student_id | int         | NO   | MUL | NULL    |                |
 | class      | int         | NO   |     | NULL    |                |
 | status     | varchar(20) | NO   |     | NULL    |                |
-|------------|-------------|------|-----|---------|----------------|
+
 
 ### Feature 1: Student Registration
 
@@ -74,76 +80,84 @@ INSERT INTO students (name, email, mobile_no,password, gender,dob) VALUES ('Isma
 
 ### Feature 2: List All Students
 ```syntax
-SELECT * FROM students;```
-|----|-----------|---------------------|------------|------------|--------|------------|---------------------|
+SELECT * FROM students;
+```
+
 | id | name      | email               | mobile_no  | password   | gender | dob        | created_date        |
 |----|-----------|---------------------|------------|------------|--------|------------|---------------------|
 |  1 | Sangeetha | sangeetha@gmail.com | 9876543210 | Sangee123  | F      | 2003-09-14 | 2022-03-02 12:22:26 |
 |  2 | Poorani   | poorani12@gmail.com | 9823443210 | Poorni123  | F      | 2004-02-27 | 2022-03-02 12:24:54 |
 |  3 | Kaushik   | kaushik12@gmail.com | 9876541230 | Kaushik123 | M      | 2003-07-16 | 2022-03-02 12:26:21 |
 |  4 | Ismail    | smile@gmail.com     | 9876542940 | Smile123   | M      | 2002-02-27 | 2022-03-02 12:34:52 |
-|----|-----------|---------------------|------------|------------|--------|------------|---------------------|
+
 
 ```syntax
-SELECT name FROM students;```
-|-----------|
+SELECT name FROM students;
+```
+
 | name      |
 |-----------|
 | Sangeetha |
 | Poorani   |
 | Kaushik   |
 | Ismail    |
-|-----------|
+
 
 ### Feature 3: Login with email and password
 ```syntax
-SELECT * FROM students WHERE email = 'smile@gmail.com' AND password = 'Smile123';```
-|----|--------|-----------------|------------|----------|--------|------------|---------------------|
+SELECT * FROM students WHERE email = 'smile@gmail.com' AND password = 'Smile123';
+```
+
 | id | name   | email           | mobile_no  | password | gender | dob        | created_date        |
 |----|--------|-----------------|------------|----------|--------|------------|---------------------|
 |  4 | Ismail | smile@gmail.com | 9876542940 | Smile123 | M      | 2002-02-27 | 2022-03-02 12:34:52 |
-|----|--------|-----------------|------------|----------|--------|------------|---------------------|
+
 
 ### Feature 4: Update Password
 ```syntax
-UPDATE students SET password = 'Sangee123' WHERE password = 'Sangeetha123';```
+UPDATE students SET password = 'Sangee123' WHERE password = 'Sangeetha123';
+```
 ```syntax
-SELECT * FROM students;```
-+----+-----------+---------------------+------------+--------------+--------+------------+---------------------+
+SELECT * FROM students;
+```
+
 | id | name      | email               | mobile_no  | password     | gender | dob        | created_date        |
-+----+-----------+---------------------+------------+--------------+--------+------------+---------------------+
+|----|-----------+---------------------|------------|--------------|--------|------------|---------------------|
 |  1 | Sangeetha | sangeetha@gmail.com | 9876543210 | Sangee123    | F      | 2003-09-14 | 2022-03-02 12:22:26 |
 |  2 | Poorani   | poorani12@gmail.com | 9823443210 | Poorni123    | F      | 2004-02-27 | 2022-03-02 12:24:54 |
 |  3 | Kaushik   | kaushik12@gmail.com | 9876541230 | Kaushik123   | M      | 2003-07-16 | 2022-03-02 12:26:21 |
 |  4 | Ismail    | smile@gmail.com     | 9876542940 | Smile123     | M      | 2002-02-27 | 2022-03-02 12:34:52 |
-+----+-----------+---------------------+------------+--------------+--------+------------+---------------------+
 
-Feature 5: Enroll Student into Class
 
+### Feature 5: Enroll Student into Class
+```syntax
 INSERT INTO student_class (student_id, class, status) VALUES (1,5,'ACTIVE');
 INSERT INTO student_class (student_id, class, status) VALUES (2,3,'INACTIVE');
 INSERT INTO student_class (student_id, class, status) VALUES (3,5,'ACTIVE');
 INSERT INTO student_class (student_id, class, status) VALUES (4,6,'INACTIVE');
-
+```
+```syntax
 SELECT * FROM student_class;
-+----+------------+-------+----------+
+```
+
 | id | student_id | class | status   |
-+----+------------+-------+----------+
+|----|------------|-------|----------|
 |  1 |          1 |     5 | ACTIVE   |
 |  2 |          2 |     3 | INACTIVE |
 |  3 |          3 |     5 | ACTIVE   |
 |  4 |          4 |     6 | INACTIVE |
-+----+------------+-------+----------+
 
-Feature 6: Find Students who are enrolled in the given class (class 5)
- 
+
+### Feature 6: Find Students who are enrolled in the given class (class 5)
+```syntax 
 SELECT * FROM student_class WHERE class = 5;
-+----+------------+-------+--------+
+```
+
 | id | student_id | class | status |
-+----+------------+-------+--------+
+|----|------------|-------|--------|
 |  1 |          1 |     5 | ACTIVE |
 |  3 |          3 |     5 | ACTIVE |
-+----+------------+-------+--------+
+
 
 Feature 7: Update Student Class information(student from 5th standard to 6th standard)
 
