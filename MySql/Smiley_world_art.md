@@ -76,7 +76,7 @@ DESC Art_details;
 
 ### Customer detaails
 ``` syntax
-CREATE TABLE Customers_details (Customer_id int(5) PRIMARY KEY AUTO_INCREMENT, Customer_name varchar(30) NOT NULL, Address varchar(255) NOT NULL, City varchar(30) NOT NULL, State varchar(50) NOT NULL, Country varchar(50) NOT NULL, Phone_number int(11) UNIQUE NOT NULL);
+CREATE TABLE Customers_details (Customer_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Customer_name varchar(30) NOT NULL, Address varchar(255) NOT NULL, City varchar(30) NOT NULL, State varchar(50) NOT NULL,Country varchar(50) NOT NULL, Phone_number bigint(11) UNIQUE NOT NULL);
 ```
 ``` syntax
 DESC Customers_details;
@@ -84,30 +84,30 @@ DESC Customers_details;
 
 | Field         | Type         | Null | Key | Default | Extra          |
 |---------------|--------------|------|-----|---------|----------------|
-| Customer_id   | int          | NO   | PRI | NULL    | auto_increment |
+| Customer_id   | tinyint      | NO   | PRI | NULL    | auto_increment |
 | Customer_name | varchar(30)  | NO   |     | NULL    |                |
 | Address       | varchar(255) | NO   |     | NULL    |                |
 | City          | varchar(30)  | NO   |     | NULL    |                |
 | State         | varchar(50)  | NO   |     | NULL    |                |
 | Country       | varchar(50)  | NO   |     | NULL    |                |
-| Phone_number  | int          | NO   | UNI | NULL    |                |
+| Phone_number  | bigint       | NO   | UNI | NULL    |                |
+
+
 
 ### Ordered products
 ``` syntax
-CREATE TABLE Ordered_details (Order_id int(5) PRIMARY KEY AUTO_INCREMENT, Price int(10) NOT NULL, Art_id int(5), FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id int(5), FOREIGN KEY(Customer_id) REFERENCES Customers_details(Customer_id), CHECK (Price > 100), created_date timestamp NOT NULL DEFAULT current_timestamp);
+CREATE TABLE Ordered_details (Order_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Price int(10) NOT NULL, Art_id int(5), FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id tinyint(5), FOREIGN KEY(Customer_id) REFERENCES Customers_details(Customer_id), CHECK (Price > 100), created_date timestamp NOT NULL DEFAULT current_timestamp);
 ```
 ``` syntax
 DESC Ordered_details;
 ```
-
 | Field        | Type      | Null | Key | Default           | Extra             |
 |--------------|-----------|------|-----|-------------------|-------------------|
-| Order_id     | int       | NO   | PRI | NULL              | auto_increment    |
+| Order_id     | tinyint   | NO   | PRI | NULL              | auto_increment    |
 | Price        | int       | NO   |     | NULL              |                   |
 | Art_id       | int       | YES  | MUL | NULL              |                   |
-| Customer_id  | int       | YES  | MUL | NULL              |                   |
+| Customer_id  | tinyint   | YES  | MUL | NULL              |                   |
 | created_date | timestamp | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-
 
 ### Registration
 ``` syntax
@@ -154,10 +154,12 @@ INSERT INTO Art_details VALUES (null, 'Sisters goals', 'file:///home/sangeethara
 SELECT * FROM Art_details;
 ```
 
-| Art_id | Art_name|  Art_image | Artist_id | Type    | Price |
-|--------|---------|-------------|-----------|---------|--------|
-|      1 | Attractive eyes |0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F73616E6765655F657965732E6A7067| 1 | Pencil drawing |  1000 |
-|      2 | Sisters goals   | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F53616E6765655F736973746572734C6F76652E6A7067 |         1 | Pencil drawing |   500 |
+| Art_id | Art_name        | Art_image                                                                                                                                                                                                        | Artist_id | Type                 | Price |
+|--------|-----------------|---------------------------------------------------------|-----------|----------------------|-------|
+|      1 | Attractive eyes | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F73616E6765655F657965732E6A7067               |         1 | Pencil drawing       |  1000 |
+|      2 | Sisters goals   | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F53616E6765655F736973746572734C6F76652E6A7067 |         1 | Pencil drawing       |   500 |
+|      3 | Banana          | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F736D696C655F62616E616E612E6A7067             |         2 | Color Pencil drawing |  1000 |
+
 
 
 
