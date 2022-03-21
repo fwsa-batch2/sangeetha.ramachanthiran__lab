@@ -92,11 +92,19 @@ DESC Customers_details;
 | Country       | varchar(50)  | NO   |     | NULL    |                |
 | Phone_number  | bigint       | NO   | UNI | NULL    |                |
 
+<<<<<<< HEAD
 
 ### Ordered products
 ``` syntax
 CREATE TABLE Ordered_details (Order_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Quantity tinyint(5) NOT NULL, Art_id int(5), FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id tinyint(5), FOREI
 GN KEY(Customer_id) REFERENCES Customers_details(Customer_id), created_date timestamp NOT NULL DEFAULT current_timestamp);
+=======
+
+
+### Ordered products
+``` syntax
+CREATE TABLE Ordered_details (Order_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Price int(10) NOT NULL, Art_id int(5), FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id tinyint(5), FOREIGN KEY(Customer_id) REFERENCES Customers_details(Customer_id), CHECK (Price > 100), created_date timestamp NOT NULL DEFAULT current_timestamp);
+>>>>>>> b8c8a40ed8cb8ea65deae0d4208e756ef5a37510
 ```
 ``` syntax
 DESC Ordered_details;
@@ -193,6 +201,7 @@ INSERT INTO Art_details VALUES (null, 'Banana', 'file:///home/sangeetharamachant
 SELECT * FROM Art_details;
 ```
 
+<<<<<<< HEAD
 | Art_id | Art_name|  Art_image | Artist_id | Type    | Price |
 |--------|---------|-------------|-----------|---------|--------|
 |      1 | Attractive eyes |0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F73616E6765655F657965732E6A7067| 1 | Pencil drawing |  1000 |
@@ -252,6 +261,13 @@ SELECT * FROM Ordered_details;
 |        3 |        1 |      3 |           4 | 2022-03-21 00:24:15 |
 |        4 |        1 |      3 |           3 | 2022-03-21 00:31:15 |
 |        5 |        1 |      1 |           1 | 2022-03-21 00:32:15 |
+=======
+| Art_id | Art_name        | Art_image                                                                                                                                                                                                        | Artist_id | Type                 | Price |
+|--------|-----------------|---------------------------------------------------------|-----------|----------------------|-------|
+|      1 | Attractive eyes | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F73616E6765655F657965732E6A7067               |         1 | Pencil drawing       |  1000 |
+|      2 | Sisters goals   | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F53616E6765655F736973746572734C6F76652E6A7067 |         1 | Pencil drawing       |   500 |
+|      3 | Banana          | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F736D696C655F62616E616E612E6A7067             |         2 | Color Pencil drawing |  1000 |
+>>>>>>> b8c8a40ed8cb8ea65deae0d4208e756ef5a37510
 
 
 
