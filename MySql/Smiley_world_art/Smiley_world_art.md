@@ -365,7 +365,10 @@ x-special/nautilus-clipboard
 copy
 file:///home/sangeetharamachanthiran/Pictures/page_3.png
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4ee6446a715fa21d429fbf5beddb4895ea350e12
 
 
 
