@@ -275,9 +275,7 @@ SELECT * FROM user_login;
 | vaishnavi12@gmail.com     | Vaishu123    |
 
 
-x-special/nautilus-clipboard
-copy
-file:///home/sangeetharamachanthiran/Downloads/ER%20SWA.png
+
 
 
 
