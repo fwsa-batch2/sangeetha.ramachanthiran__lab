@@ -142,6 +142,8 @@ SELECT * FROM user_details;
 
 ### Artist sell their arts 
 
+###### Artist details
+
 ``` syntax
 INSERT INTO Artist_details VALUES (null, 'Sangeetha', 'Chennai');
 ```
@@ -171,6 +173,7 @@ SELECT * FROM Artist_details;
 |         5 | Keerthana   | Coimbatore  |
 
 
+###### Arts details
 ``` syntax
 INSERT INTO Art_details VALUES (null, 'Attractive eyes', 'file:///home/sangeetharamachanthiran/fwsa-batch2/smileyworldartapp-ui/assets/img/sangee_eyes.jpg', 1, 'Pencil drawing',1000);
 ```
@@ -202,7 +205,7 @@ SELECT * FROM Art_details;
 |      5 | Cute baby          | 0x68747470733A2F2F696D616765732E74656D706C6174652E6E65742F77702D636F6E74656E742F75706C6F6164732F323031342F31312F70656E63696C2D64726177696E672D617274776F726B2E6A7067                                             |         3 | Pencil drawing       |  1000 |
 |      6 | Banana             | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F736D696C655F62616E616E612E6A7067             |         2 | Color Pencil drawing |  1000 |
 
-
+### Customers details
 
 ``` syntax
 INSERT INTO Customers_details VALUES (null, 'Sangeetha', '203 Mahalakshmi nagar,Guduvancheri','Chennai','Tamil nadu','India','9876543210');
@@ -227,6 +230,7 @@ SELECT * FROM Customers_details;
 |           4 | Keerthana     | 14,Nehru street                    |Coimbatore | Tamil nadu | India   |   8708432109 |
 
 
+### Customers ordered their favourite Arts
 ``` syntax
 INSERT INTO Ordered_details VALUES (null, 2, 2, 1, '2022-03-21');
 ```
@@ -254,6 +258,21 @@ SELECT * FROM Ordered_details;
 |        5 |        1 |      1 |           1 | 2022-03-21 00:32:15 |
 
 
+### View table for Email Id and Password
+``` syntax
+CREATE VIEW user_login AS SELECT Email_id, Password FROM user_details;
+```
+``` syntax
+SELECT * FROM user_login;
+```
+
+| Email_id                  | Password     |
+|---------------------------|--------------|
+| sangeetha.r1409@gmail.com | Sangeetha123 |
+| poorani27@gmail.com       | Poorani123   |
+| chithu12@gmail.com        | Chithu123    |
+| smile27@gmail.com         | Smile@123    |
+| vaishnavi12@gmail.com     | Vaishu123    |
 
 
 
