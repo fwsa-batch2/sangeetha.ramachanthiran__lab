@@ -41,74 +41,6 @@ DESC user_details;
 | Password         | varchar(20)  | NO   | UNI | NULL    |                |
 | Confirm_password | varchar(20)  | NO   | UNI | NULL    |                |
 
-###  Artist_details
-```syntax
-CREATE TABLE Artist_details (Artist_id int(5) PRIMARY KEY AUTO_INCREMENT, Artist_name varchar(30) NOT NULL, Place varchar(20) NOT NULL);
-```
-``` syntax
-DESC Artist_details;
-```
-
-| Field       | Type        | Null | Key | Default | Extra          |
-|-------------|-------------|------|-----|---------|----------------|
-| Artist_id   | int         | NO   | PRI | NULL    | auto_increment |
-| Artist_name | varchar(30) | NO   |     | NULL    |                |
-| Place       | varchar(20) | NO   |     | NULL    |                |
-
-
-### Arts details
-```syntax
-CREATE TABLE Art_details (Art_id int(5) PRIMARY KEY AUTO_INCREMENT, Art_name varchar(50) NOT NULL, Art_image BLOB, Artist_id int(5), FOREIGN KEY(Artist_id) REFERENCES Artist_details(Artist_id), Type varchar(20) NOT NULL, CHECK (Type IN ('Pencil drawing', 'Color pencil drawing', 'Painting')), Price int(10) NOT NULL, CHECK(Price > 100));
-```
-``` syntax
-DESC Art_details;
-```
-
-| Field     | Type        | Null | Key | Default | Extra          |
-|-----------|-------------|------|-----|---------|----------------|
-| Art_id    | int         | NO   | PRI | NULL    | auto_increment |
-| Art_name  | varchar(50) | NO   |     | NULL    |                |
-| Art_image | blob        | YES  |     | NULL    |                |
-| Artist_id | int         | YES  | MUL | NULL    |                |
-| Type      | varchar(20) | NO   |     | NULL    |                |
-| Price     | int         | NO   |     | NULL    |                |
-
-
-### Customer detaails
-``` syntax
-CREATE TABLE Customers_details (Customer_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Customer_name varchar(30) NOT NULL, Address varchar(255) NOT NULL, City varchar(30) NOT NULL, State varchar(50) NOT NULL,Country varchar(50) NOT NULL, Phone_number bigint(11) UNIQUE NOT NULL);
-```
-``` syntax
-DESC Customers_details;
-```
-
-| Field         | Type         | Null | Key | Default | Extra          |
-|---------------|--------------|------|-----|---------|----------------|
-| Customer_id   | tinyint      | NO   | PRI | NULL    | auto_increment |
-| Customer_name | varchar(30)  | NO   |     | NULL    |                |
-| Address       | varchar(255) | NO   |     | NULL    |                |
-| City          | varchar(30)  | NO   |     | NULL    |                |
-| State         | varchar(50)  | NO   |     | NULL    |                |
-| Country       | varchar(50)  | NO   |     | NULL    |                |
-| Phone_number  | bigint       | NO   | UNI | NULL    |                |
-
-
-### Ordered products
-``` syntax
-CREATE TABLE Ordered_details (Order_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Quantity tinyint(5) NOT NULL, Art_id int(5), FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id tinyint(5), FOREI
-GN KEY(Customer_id) REFERENCES Customers_details(Customer_id), created_date timestamp NOT NULL DEFAULT current_timestamp);
-```
-``` syntax
-DESC Ordered_details;
-```
-| Field        | Type      | Null | Key | Default           | Extra             |
-|--------------|-----------|------|-----|-------------------|-------------------|
-| Order_id     | tinyint   | NO   | PRI | NULL              | auto_increment    |
-| Price        | int       | NO   |     | NULL              |                   |
-| Art_id       | int       | YES  | MUL | NULL              |                   |
-| Customer_id  | tinyint   | YES  | MUL | NULL              |                   |
-| created_date | timestamp | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-
 ### Registration
 ``` syntax
 INSERT INTO user_details VALUES (null, 'Sangeetha', 'sangeetha.r1409@gmail.com', 'Sangeetha123','Sangeetha123');
@@ -140,9 +72,105 @@ SELECT * FROM user_details;
 |  5 | Vaishnavi   | vaishnavi12@gmail.com     | Vaishu123    | Vaishu123        |
 
 
-### Artist sell their arts 
+### Role
 
-###### Artist details
+``` syntax
+CREATE TABLE role (Id tinyint(5) PRIMARY KEY AUTO_INCREMENT, role_name varchar(30) NOT NULL, CHECK (role_name in ('user','admin')));
+```
+
+``` syntax
+DESC role;
+```
+
+| Field     | Type        | Null | Key | Default | Extra          |
+|-----------|-------------|------|-----|---------|----------------|
+| Id        | tinyint     | NO   | PRI | NULL    | auto_increment |
+| role_name | varchar(30) | NO   |     | NULL    |                |
+
+``` syntax
+INSERT INTO role VALUES (1, 'admin');
+```
+``` syntax
+INSERT INTO role VALUES (2, 'user');
+```
+``` syntax
+INSERT INTO role VALUES (null, 'user');
+```
+``` syntax
+INSERT INTO role VALUES (null, 'user');
+```
+``` syntax
+INSERT INTO role VALUES (null, 'user');
+```
+
+``` syntax
+SELECT * FROM role;
+```
+
+| Id | role_name |
+|----|-----------|
+|  1 | admin     |
+|  2 | user      |
+|  3 | user      |
+|  4 | user      |
+|  5 | user      |
+
+
+### user_role
+``` syntax
+CREATE TABLE user_role(Id int PRIMARY KEY AUTO_INCREMENT, user_id int NOT NULL, FOREIGN KEY(user_id) REFERENCES user_details(Id), role_id tinyint NOT NULL, FOREIGN KEY(role_id) REFERENCES role(Id));
+```
+``` syntax
+DESC user_role;
+```
+| Field   | Type    | Null | Key | Default | Extra          |
+|---------|---------|------|-----|---------|----------------|
+| Id      | int     | NO   | PRI | NULL    | auto_increment |
+| user_id | int     | NO   | MUL | NULL    |                |
+| role_id | tinyint | NO   | MUL | NULL    |                |
+
+``` syntax
+INSERT INTO user_role VALUES (1, 1, 1);
+```
+``` syntax
+INSERT INTO user_role VALUES (null, 2, 2);
+```
+``` syntax
+INSERT INTO user_role VALUES (null, 3, 3);
+```
+``` syntax
+INSERT INTO user_role VALUES (null, 4, 4);
+```
+``` syntax
+INSERT INTO user_role VALUES (null, 5, 5);
+```
+``` syntax
+SELECT * FROM user_role;
+```
+
+| Id | user_id | role_id |
+|----|---------|---------|
+|  1 |       1 |       1 |
+|  2 |       2 |       2 |
+|  3 |       3 |       3 |
+|  4 |       4 |       4 |
+|  5 |       5 |       5 |
+
+###  Artist_details
+```syntax
+CREATE TABLE Artist_details (Artist_id int(5) PRIMARY KEY AUTO_INCREMENT, Artist_name varchar(30) NOT NULL, Place varchar(20) NOT NULL);
+```
+``` syntax
+DESC Artist_details;
+```
+
+| Field       | Type        | Null | Key | Default | Extra          |
+|-------------|-------------|------|-----|---------|----------------|
+| Artist_id   | int         | NO   | PRI | NULL    | auto_increment |
+| Artist_name | varchar(30) | NO   |     | NULL    |                |
+| Place       | varchar(20) | NO   |     | NULL    |                |
+
+### Artist details
 
 ``` syntax
 INSERT INTO Artist_details VALUES (null, 'Sangeetha', 'Chennai');
@@ -172,8 +200,24 @@ SELECT * FROM Artist_details;
 |         4 | Vaishnavi   | Erode       |
 |         5 | Keerthana   | Coimbatore  |
 
+### Arts details
+```syntax
+CREATE TABLE Art_details (Art_id int(5) PRIMARY KEY AUTO_INCREMENT, Art_name varchar(50) NOT NULL, Art_image BLOB, Artist_id int(5), FOREIGN KEY(Artist_id) REFERENCES Artist_details(Artist_id), Type varchar(20) NOT NULL, CHECK (Type IN ('Pencil drawing', 'Color pencil drawing', 'Painting')), Price int(10) NOT NULL, CHECK(Price > 100));
+```
+``` syntax
+DESC Art_details;
+```
 
-###### Arts details
+| Field     | Type        | Null | Key | Default | Extra          |
+|-----------|-------------|------|-----|---------|----------------|
+| Art_id    | int         | NO   | PRI | NULL    | auto_increment |
+| Art_name  | varchar(50) | NO   |     | NULL    |                |
+| Art_image | blob        | YES  |     | NULL    |                |
+| Artist_id | int         | YES  | MUL | NULL    |                |
+| Type      | varchar(20) | NO   |     | NULL    |                |
+| Price     | int         | NO   |     | NULL    |                |
+
+### Arts details
 ``` syntax
 INSERT INTO Art_details VALUES (null, 'Attractive eyes', 'file:///home/sangeetharamachanthiran/fwsa-batch2/smileyworldartapp-ui/assets/img/sangee_eyes.jpg', 1, 'Pencil drawing',1000);
 ```
@@ -205,6 +249,25 @@ SELECT * FROM Art_details;
 |      5 | Cute baby          | 0x68747470733A2F2F696D616765732E74656D706C6174652E6E65742F77702D636F6E74656E742F75706C6F6164732F323031342F31312F70656E63696C2D64726177696E672D617274776F726B2E6A7067                                             |         3 | Pencil drawing       |  1000 |
 |      6 | Banana             | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F736D696C655F62616E616E612E6A7067             |         2 | Color Pencil drawing |  1000 |
 
+
+### Customer detaails
+``` syntax
+CREATE TABLE Customers_details (Customer_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Customer_name varchar(30) NOT NULL, Address varchar(255) NOT NULL, City varchar(30) NOT NULL, State varchar(50) NOT NULL,Country varchar(50) NOT NULL, Phone_number bigint(11) UNIQUE NOT NULL);
+```
+``` syntax
+DESC Customers_details;
+```
+
+| Field         | Type         | Null | Key | Default | Extra          |
+|---------------|--------------|------|-----|---------|----------------|
+| Customer_id   | tinyint      | NO   | PRI | NULL    | auto_increment |
+| Customer_name | varchar(30)  | NO   |     | NULL    |                |
+| Address       | varchar(255) | NO   |     | NULL    |                |
+| City          | varchar(30)  | NO   |     | NULL    |                |
+| State         | varchar(50)  | NO   |     | NULL    |                |
+| Country       | varchar(50)  | NO   |     | NULL    |                |
+| Phone_number  | bigint       | NO   | UNI | NULL    |                |
+
 ### Customers details
 
 ``` syntax
@@ -228,6 +291,23 @@ SELECT * FROM Customers_details;
 |           2 | Annapoorani   | 12 Mahalakshmi nagar,Bodi          | Theni   | Tamil nadu | India   |   9876343254 |
 |           3 | Vaishnavi     | 12,Gandhi street,Gobichettipalayam | Erode   | Tamil nadu | India   |   8765432109 |
 |           4 | Keerthana     | 14,Nehru street                    |Coimbatore | Tamil nadu | India   |   8708432109 |
+
+
+### Ordered products
+``` syntax
+CREATE TABLE Ordered_details (Order_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Quantity tinyint(5) NOT NULL, Art_id int(5), FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id tinyint(5), FOREI
+GN KEY(Customer_id) REFERENCES Customers_details(Customer_id), created_date timestamp NOT NULL DEFAULT current_timestamp);
+```
+``` syntax
+DESC Ordered_details;
+```
+| Field        | Type      | Null | Key | Default           | Extra             |
+|--------------|-----------|------|-----|-------------------|-------------------|
+| Order_id     | tinyint   | NO   | PRI | NULL              | auto_increment    |
+| Price        | int       | NO   |     | NULL              |                   |
+| Art_id       | int       | YES  | MUL | NULL              |                   |
+| Customer_id  | tinyint   | YES  | MUL | NULL              |                   |
+| created_date | timestamp | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
 
 
 ### Customers ordered their favourite Arts
@@ -275,16 +355,17 @@ SELECT * FROM user_login;
 | vaishnavi12@gmail.com     | Vaishu123    |
 
 ### ER Diagram 
-![ER SWA](https://user-images.githubusercontent.com/93571291/159458990-c4d021b1-e247-462e-86ef-3b049ef7fc52.png)
+x-special/nautilus-clipboard
+copy
+file:///home/sangeetharamachanthiran/Pictures/page_2.png
+
 
 ### EER Diagram
-![EER diagram](https://user-images.githubusercontent.com/93571291/159459783-bbcd25e2-189d-43a7-9cad-c6dca9b95b29.png)
+x-special/nautilus-clipboard
+copy
+file:///home/sangeetharamachanthiran/Pictures/page_3.png
 
 
-<<<<<<< HEAD:MySql/Smiley_world_art/Smiley_world_art.md
-
-=======
->>>>>>> 3e15fe6f5c22746a7ae2b813fc31e7e81b0f7894:MySql/Smiley_world_art.md
 
 
 
