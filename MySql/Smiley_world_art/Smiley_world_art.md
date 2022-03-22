@@ -281,10 +281,6 @@ SELECT * FROM user_login;
 ![EER diagram](https://user-images.githubusercontent.com/93571291/159459783-bbcd25e2-189d-43a7-9cad-c6dca9b95b29.png)
 
 
-<<<<<<< HEAD:MySql/Smiley_world_art/Smiley_world_art.md
-
-=======
->>>>>>> 3e15fe6f5c22746a7ae2b813fc31e7e81b0f7894:MySql/Smiley_world_art.md
 
 
 
