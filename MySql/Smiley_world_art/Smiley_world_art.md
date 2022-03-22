@@ -355,20 +355,9 @@ SELECT * FROM user_login;
 | vaishnavi12@gmail.com     | Vaishu123    |
 
 ### ER Diagram 
-x-special/nautilus-clipboard
-copy
-file:///home/sangeetharamachanthiran/Pictures/page_2.png
 
 
 ### EER Diagram
-x-special/nautilus-clipboard
-copy
-file:///home/sangeetharamachanthiran/Pictures/page_3.png
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 4ee6446a715fa21d429fbf5beddb4895ea350e12
 
 
 
