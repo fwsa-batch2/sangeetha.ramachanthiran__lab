@@ -354,10 +354,10 @@ SELECT * FROM user_login;
 | smile27@gmail.com         | Smile@123    |
 | vaishnavi12@gmail.com     | Vaishu123    |
 
-### ER Diagram 
+### ER_Diagram 
 
 
-### EER Diagram
+### EER_Diagram
 
 
 
