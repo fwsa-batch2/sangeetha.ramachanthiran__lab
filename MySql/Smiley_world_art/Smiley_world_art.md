@@ -354,10 +354,19 @@ SELECT * FROM user_login;
 | smile27@gmail.com         | Smile@123    |
 | vaishnavi12@gmail.com     | Vaishu123    |
 
+<<<<<<< HEAD
 ### ER_Diagram 
 
 
 ### EER_Diagram
+=======
+### ER Diagram 
+![page_2](https://user-images.githubusercontent.com/93571291/159527642-8cc7cfce-4c1e-451f-a8ab-4dd5a9755991.png)
+
+
+### EER Diagram
+![page_3](https://user-images.githubusercontent.com/93571291/159527674-0276f255-7e3c-40a9-bcf5-77c7199a0698.png)
+>>>>>>> 8eb33361b5f33592df74d4195f3724557b1248cc
 
 
 
