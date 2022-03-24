@@ -75,7 +75,7 @@ SELECT * FROM user_details;
 ### Role
 
 ``` syntax
-CREATE TABLE role (Id tinyint(5) PRIMARY KEY AUTO_INCREMENT, role_name varchar(30) NOT NULL, CHECK (role_name in ('user','admin')));
+CREATE TABLE role (Id int PRIMARY KEY AUTO_INCREMENT, role_name varchar(30) NOT NULL, CHECK (role_name in ('user','admin')));
 ```
 
 ``` syntax
@@ -84,8 +84,9 @@ DESC role;
 
 | Field     | Type        | Null | Key | Default | Extra          |
 |-----------|-------------|------|-----|---------|----------------|
-| Id        | tinyint     | NO   | PRI | NULL    | auto_increment |
+| Id        | int         | NO   | PRI | NULL    | auto_increment |
 | role_name | varchar(30) | NO   |     | NULL    |                |
+
 
 ``` syntax
 INSERT INTO role VALUES (1, 'admin');
@@ -118,7 +119,7 @@ SELECT * FROM role;
 
 ### user_role
 ``` syntax
-CREATE TABLE user_role(Id int PRIMARY KEY AUTO_INCREMENT, user_id int NOT NULL, FOREIGN KEY(user_id) REFERENCES user_details(Id), role_id tinyint NOT NULL, FOREIGN KEY(role_id) REFERENCES role(Id));
+CREATE TABLE user_role(Id int PRIMARY KEY AUTO_INCREMENT, user_id int NOT NULL, FOREIGN KEY(user_id) REFERENCES user_details(Id), role_id int NOT NULL, FOREIGN KEY(role_id) REFERENCES role(Id));
 ```
 ``` syntax
 DESC user_role;
@@ -127,7 +128,8 @@ DESC user_role;
 |---------|---------|------|-----|---------|----------------|
 | Id      | int     | NO   | PRI | NULL    | auto_increment |
 | user_id | int     | NO   | MUL | NULL    |                |
-| role_id | tinyint | NO   | MUL | NULL    |                |
+| role_id | int     | NO   | MUL | NULL    |                |
+
 
 ``` syntax
 INSERT INTO user_role VALUES (1, 1, 1);
@@ -250,9 +252,9 @@ SELECT * FROM Art_details;
 |      6 | Banana             | 0x66696C653A2F2F2F686F6D652F73616E67656574686172616D616368616E74686972616E2F667773612D6261746368322F736D696C6579776F726C646172746170702D75692F6173736574732F696D672F736D696C655F62616E616E612E6A7067             |         2 | Color Pencil drawing |  1000 |
 
 
-### Customer detaails
+### Customer details
 ``` syntax
-CREATE TABLE Customers_details (Customer_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Customer_name varchar(30) NOT NULL, Address varchar(255) NOT NULL, City varchar(30) NOT NULL, State varchar(50) NOT NULL,Country varchar(50) NOT NULL, Phone_number bigint(11) UNIQUE NOT NULL);
+CREATE TABLE Customers_details (Customer_id int PRIMARY KEY AUTO_INCREMENT, Customer_name varchar(30) NOT NULL, Address varchar(255) NOT NULL, City varchar(30) NOT NULL, State varchar(50) NOT NULL,Country varchar(50) NOT NULL, Phone_number bigint(11) UNIQUE NOT NULL);
 ```
 ``` syntax
 DESC Customers_details;
@@ -260,7 +262,7 @@ DESC Customers_details;
 
 | Field         | Type         | Null | Key | Default | Extra          |
 |---------------|--------------|------|-----|---------|----------------|
-| Customer_id   | tinyint      | NO   | PRI | NULL    | auto_increment |
+| Customer_id   | int          | NO   | PRI | NULL    | auto_increment |
 | Customer_name | varchar(30)  | NO   |     | NULL    |                |
 | Address       | varchar(255) | NO   |     | NULL    |                |
 | City          | varchar(30)  | NO   |     | NULL    |                |
@@ -268,7 +270,7 @@ DESC Customers_details;
 | Country       | varchar(50)  | NO   |     | NULL    |                |
 | Phone_number  | bigint       | NO   | UNI | NULL    |                |
 
-### Customers details
+### Inserting into Customer_details
 
 ``` syntax
 INSERT INTO Customers_details VALUES (null, 'Sangeetha', '203 Mahalakshmi nagar,Guduvancheri','Chennai','Tamil nadu','India','9876543210');
@@ -295,18 +297,18 @@ SELECT * FROM Customers_details;
 
 ### Ordered products
 ``` syntax
-CREATE TABLE Ordered_details (Order_id tinyint(5) PRIMARY KEY AUTO_INCREMENT, Quantity tinyint(5) NOT NULL, Art_id int(5), FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id tinyint(5), FOREI
-GN KEY(Customer_id) REFERENCES Customers_details(Customer_id), created_date timestamp NOT NULL DEFAULT current_timestamp);
+CREATE TABLE Ordered_details (Order_id int PRIMARY KEY AUTO_INCREMENT, Quantity tinyint NOT NULL,Art_id int, FOREIGN KEY(Art_id) REFERENCES Art_details(Art_id), Customer_id int, FOREIGN KEY (Customer_id)
+REFERENCES Customers_details(Customer_id), created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
 ```
 ``` syntax
 DESC Ordered_details;
 ```
 | Field        | Type      | Null | Key | Default           | Extra             |
 |--------------|-----------|------|-----|-------------------|-------------------|
-| Order_id     | tinyint   | NO   | PRI | NULL              | auto_increment    |
-| Price        | int       | NO   |     | NULL              |                   |
+| Order_id     | int       | NO   | PRI | NULL              | auto_increment    |
+| Quantity     | tinyint   | NO   |     | NULL              |                   |
 | Art_id       | int       | YES  | MUL | NULL              |                   |
-| Customer_id  | tinyint   | YES  | MUL | NULL              |                   |
+| Customer_id  | int       | YES  | MUL | NULL              |                   |
 | created_date | timestamp | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
 
 
@@ -315,13 +317,10 @@ DESC Ordered_details;
 INSERT INTO Ordered_details VALUES (null, 2, 2, 1, '2022-03-21');
 ```
 ``` syntax
-INSERT INTO Ordered_details VALUES (null, 1, 3, 5, '2022-03-21 00:24:15');
-```
-``` syntax
 INSERT INTO Ordered_details VALUES (null, 1, 3, 4, '2022-03-21 00:24:15');
 ```
 ``` syntax
-INSERT INTO Ordered_details VALUES (4, 1, 3, 3, '2022-03-21 00:31:15');
+INSERT INTO Ordered_details VALUES (null, 1, 3, 3, '2022-03-21 00:31:15');
 ```
 ``` syntax
 INSERT INTO Ordered_details VALUES (null, 1, 1, 1, '2022-03-21 00:32:15');
@@ -332,10 +331,10 @@ SELECT * FROM Ordered_details;
 | Order_id | Quantity | Art_id | Customer_id | created_date        |
 |----------|----------|--------|-------------|---------------------|
 |        1 |        2 |      2 |           1 | 2022-03-21 00:00:00 |
-|        2 |        1 |      4 |           2 | 2022-03-21 00:24:15 |
-|        3 |        1 |      3 |           4 | 2022-03-21 00:24:15 |
-|        4 |        1 |      3 |           3 | 2022-03-21 00:31:15 |
-|        5 |        1 |      1 |           1 | 2022-03-21 00:32:15 |
+|        2 |        1 |      3 |           4 | 2022-03-21 00:24:15 |
+|        3 |        1 |      3 |           3 | 2022-03-21 00:31:15 |
+|        4 |        1 |      1 |           1 | 2022-03-21 00:32:15 |
+
 
 
 ### View table for Email Id and Password
