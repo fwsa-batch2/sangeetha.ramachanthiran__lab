@@ -94,15 +94,6 @@ INSERT INTO role VALUES (1, 'admin');
 ``` syntax
 INSERT INTO role VALUES (2, 'user');
 ```
-``` syntax
-INSERT INTO role VALUES (null, 'user');
-```
-``` syntax
-INSERT INTO role VALUES (null, 'user');
-```
-``` syntax
-INSERT INTO role VALUES (null, 'user');
-```
 
 ``` syntax
 SELECT * FROM role;
@@ -112,9 +103,7 @@ SELECT * FROM role;
 |----|-----------|
 |  1 | admin     |
 |  2 | user      |
-|  3 | user      |
-|  4 | user      |
-|  5 | user      |
+
 
 
 ### user_role
@@ -138,13 +127,13 @@ INSERT INTO user_role VALUES (1, 1, 1);
 INSERT INTO user_role VALUES (null, 2, 2);
 ```
 ``` syntax
-INSERT INTO user_role VALUES (null, 3, 3);
+INSERT INTO user_role VALUES (null, 3, 2);
 ```
 ``` syntax
-INSERT INTO user_role VALUES (null, 4, 4);
+INSERT INTO user_role VALUES (null, 4, 2);
 ```
 ``` syntax
-INSERT INTO user_role VALUES (null, 5, 5);
+INSERT INTO user_role VALUES (null, 5, 2);
 ```
 ``` syntax
 SELECT * FROM user_role;
@@ -154,9 +143,9 @@ SELECT * FROM user_role;
 |----|---------|---------|
 |  1 |       1 |       1 |
 |  2 |       2 |       2 |
-|  3 |       3 |       3 |
-|  4 |       4 |       4 |
-|  5 |       5 |       5 |
+|  3 |       3 |       2 |
+|  4 |       4 |       2 |
+|  5 |       5 |       2 |
 
 ###  Artist_details
 ```syntax
