@@ -1,6 +1,6 @@
 # Smiley world art
 ![page_1](https://user-images.githubusercontent.com/93571291/159527034-e1bb7d87-e126-4a77-92b1-4fc2bc323fda.png)
-![page_2](https://user-images.githubusercontent.com/93571291/159527074-9d19297c-19a5-44b1-9198-4227338f357c.png)
+![page_2](https://user-images.githubusercontent.com/93571291/160345391-797c4f06-375e-43ae-b2f4-f161f5401262.png)
 ![page_3](https://user-images.githubusercontent.com/93571291/159964471-8cf69644-31ce-47ff-83c6-f283d8a17540.png)
 ![page_4](https://user-images.githubusercontent.com/93571291/159851529-95f13205-a194-4035-b36b-7af877a50373.png)
 ![page_5](https://user-images.githubusercontent.com/93571291/159527159-d9c467d4-e747-4df5-b5e2-19f1982d7b0f.png)
