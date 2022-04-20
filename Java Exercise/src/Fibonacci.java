@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 public class Fibonacci {
     public static void main(String[] args) {
         int no_of_terms = 5;
@@ -10,7 +8,7 @@ public class Fibonacci {
             next_num = num_1 + num_2;
             num_1 = num_2;
             num_2 = next_num;
-            System.out.println("Fibonacci Series " + num_1);
+            System.out.println(num_1);
         }
     }
 }

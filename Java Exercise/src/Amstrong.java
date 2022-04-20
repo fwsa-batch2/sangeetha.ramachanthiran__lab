@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 public class Amstrong {
     public static void main(String[] args) {
         int number = 407;

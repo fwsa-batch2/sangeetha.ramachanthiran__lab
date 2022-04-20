@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calculator</title>
+    <style>
+        h1 {
+            font-size: 45px;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">JavaScript Program to Make a Simple Calculator</h1>
+    <script>
+        //get first number from user
+        let first = prompt('Enter first number');
+        //get second number from user
+        let second = prompt('Enter second number');
+        //get operators from user
+        let operators = prompt('Enter (either +, - , * or /)');
+        //answer is
+        let answer;
+        //using if 
+        if(operators == '+'){
+            answer = first + second;
+        }
+        //using else if....
+        else if (operators == '-'){
+            answer = first - second;
+        }
+        //using another else if to multiplication.
+        else if (operators == '*'){
+            answer = first * second;
+        }
+        //using else
+        else {
+            answer = first / second; 
+        }
+        document.write(`${first} ${operators} ${second} = ${answer}`);
+        console.log(`${first} ${operators} ${second} = ${answer}`);
+    </script>
+</body>
+</html>

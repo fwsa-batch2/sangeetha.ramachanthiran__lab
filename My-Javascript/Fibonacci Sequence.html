@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Sequence</title>
+    <style>
+        h1 {
+            font-size: 45px;
+        }
+    </style>
+</head>
+
+<body bgcolor="wheat">
+    <h1 align="center">JavaScript Program to Print the Fibonacci Sequence</h1>
+    <script>
+        //get number of terms from user
+        let number = prompt("Enter number of terms");
+        let num1 = 0, num2 = 1, next;
+        //find Fibonacci Sequence using for loop
+        for (let i = 1; i <= number; i++) {
+            next = num1 + num2;
+            num1 = num2;
+            num2 = next;
+            document.write(num1);
+            document.write("<br>");
+            console.log(num1);
+        }
+    </script>
+</body>
+
+</html>

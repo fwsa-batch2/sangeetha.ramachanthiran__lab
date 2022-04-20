@@ -15,11 +15,11 @@ public class strongNumber {
 
         System.out.println(result);
         System.out.println(input);
-            if (input == result) {
-                System.out.println(input + " is a strong number");
-            }
-            else{
-                System.out.println(input + " is not a strong number");
-            }
+        if (input == result) {
+            System.out.println(input + " is a strong number");
+        }
+        else{
+            System.out.println(input + " is not a strong number");
+        }
     }
 }

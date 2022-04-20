@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>swap</title>
+    <style>
+        h1 {
+            font-size: 45px;
+        }
+    </style>
+</head>
+<body bgcolor="wheat">
+    <h1 align="center"> JavaScript Program to Swap Two Variables</h1>
+    <script>
+         //JavaScript Program to Swap Two Variables
+        let num1 = prompt("Enter the first number");
+        let num2 = prompt("Enter the second number");
+        let temp;
+        //type 1(using temp)
+        temp = num1;
+        num1 = num2;
+        num2 = temp;
+
+        document.write(`The value of num1 after swapping: ${num1}`);
+        document.write("<br>")
+        document.write(`The value of num2 after swapping: ${num2}`);
+        console.log(`The value of num1 after swapping: ${num1}`);
+        console.log(`The valueof num2 after swapping: ${num2}`);
+
+        //type 2(destructuring method)
+        [num1, num2] = [num2, num1];
+        document.write("<br>");
+        document.write(`The value of num1 is: ${num1}`);
+        document.write("<br>");
+        document.write(`The value of num2 is: ${num2}`);
+        
+    </script>
+</body>
+</html>
