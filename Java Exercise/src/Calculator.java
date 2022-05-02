@@ -1,5 +1,4 @@
 public class Calculator {
-<<<<<<< HEAD
     static int input1 = 30;
     static int input2 = 15;
     public static void main(String[] args) {
@@ -29,13 +28,5 @@ public class Calculator {
     static void modulus() {
         int modulus_output = input1 % input2;
         System.out.println("The modulus of the number is " + modulus_output);
-=======
-    public static void main(String[] args) {
-        System.out.println("Operator");
-        add();
-    }
-    static void add() {
-
->>>>>>> b2364b9a7bbb28060183dbeb78dde1475e7433be
     }
 }

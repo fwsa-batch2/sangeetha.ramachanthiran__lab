@@ -1,4 +1,4 @@
-public class reverse {
+public class Reverse {
     public static void main(String[] args) {
         int number = 1567,last_digit = 0;
         for ( ;number != 0;number=number/10) {

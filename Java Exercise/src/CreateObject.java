@@ -10,11 +10,7 @@
 //        System.out.println(objectName.a);
 //        System.out.println("hasan");
 //         add();
-<<<<<<< HEAD
 //          System.out.println(args.getClass().getSimpleName());
-=======
-
->>>>>>> b2364b9a7bbb28060183dbeb78dde1475e7433be
     }
        int add() {
         System.out.println("Duke Ji");
