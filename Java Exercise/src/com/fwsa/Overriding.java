@@ -4,7 +4,7 @@ class Class1 {
     int input1 = 14;
     int input2 = 16;
 
-    int add() {
+     int add() {
         return input1 + input2;
     }
 
